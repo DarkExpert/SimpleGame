@@ -1,0 +1,64 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Go Fish";
+}
+
+<h2>Go Fish</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="stats">
+        <p><strong>User:</strong> @User.Identity.Name</p>
+        <p><strong>Games Played:</strong> @Model.GamesPlayed</p>
+        <p><strong>Games Won:</strong> @Model.GamesWon</p>
+    </div>
+}
+
+@if (Model.Game != null)
+{
+    <p><strong>Current Turn:</strong> @Model.Game.CurrentTurn</p>
+
+    @if (Model.Game.IsGameOver)
+    {
+        <h3> Winner: @Model.Game.Winner</h3>
+        <form method="post" asp-page-handler="NewGame">
+            <button type="submit">Start New Game</button>
+        </form>
+    }
+    else
+    {
+        <h4>Your Hand</h4>
+        <form method="post" class="card-hand animate-in">
+            @foreach (var card in Model.PlayerHand)
+            {
+                <button type="submit" name="requestedRank" value="@card.Rank" class="card">
+                    @card.Rank
+                </button>
+            }
+        </form>
+
+
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="log">
+                <p>@Model.Message</p>
+            </div>
+        }
+    }
+}
+else
+{
+    <form method="post" asp-page-handler="NewGame">
+        <button type="submit">Start Game</button>
+    </form>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".card");
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 100}ms`;
+        });
+    });
+</script>
