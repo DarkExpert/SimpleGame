@@ -1,0 +1,85 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.card-hand {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: start;
+    animation: fadeSlideIn 0.6s ease-in;
+}
+
+.card {
+    width: 60px;
+    height: 90px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(#fff, #eee);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.5s forwards;
+}
+
+    .card:hover {
+        transform: scale(1.1);
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    }
+
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.log {
+    margin-top: 20px;
+    padding: 10px;
+    border-left: 5px solid #5c9ded;
+    background: #f0f8ff;
+    font-family: monospace;
+    font-size: 1rem;
+}
